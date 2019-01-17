@@ -3,14 +3,14 @@ export default (...promisesArr) => {
     let responses = Array(promises.length);
 
     return new Promise((res, rej) => {
-        const promiseReady = index => data => {
-            responses[index] = data;
+        const promiseReady = index => response => {
+            responses[index] = response;
 
             if (responses.filter(Boolean).length === promises.length)
                 res(responses);
         }
 
-        promises.forEach((promise, i) => promise()
+        promises.forEach((promise, i) => (typeof promise === 'function' ? promise() : promise)
             .then(promiseReady(i))
             .catch(promiseReady(i)))
     });
