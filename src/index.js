@@ -1,4 +1,5 @@
-export default (promises) => {
+export default (...promisesArr) => {
+    const promises = Array.isArray(promisesArr[0]) ? promisesArr[0] : promisesArr;
     let responses = Array(promises.length);
 
     return new Promise((res, rej) => {
