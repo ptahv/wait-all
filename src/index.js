@@ -1,12 +1,14 @@
 export default (...promisesArr) => {
     const promises = Array.isArray(promisesArr[0]) ? promisesArr[0] : promisesArr;
+    
     let responses = Array(promises.length);
-
+    let promiseReadyCount = 0;
     return new Promise((res, rej) => {
         const promiseReady = index => response => {
             responses[index] = response;
+            promiseReadyCount = promiseReadyCount + 1;
 
-            if (responses.filter(Boolean).length === promises.length)
+            if (promiseReadyCount === promises.length)
                 res(responses);
         }
 

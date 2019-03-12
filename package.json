@@ -1,6 +1,6 @@
 {
   "name": "wait-all",
-  "version": "0.0.1-develop.1",
+  "version": "0.1.0-RC.1",
   "description": "Provides a method to wait all promises, even if a promise is rejected",
   "files": [
     "dist",
